@@ -2,14 +2,71 @@ body {
   font-family: sans-serif;
 }
 
+input {
+  border-radius: 16px;
+  border: none;
+  padding: 6px 16px;
+  /*  outline: none; */
+}
+
+button {
+  border-radius: 16px;
+  border: none;
+  padding: 6px 16px; /* ボタン内の「文字」と枠までの間隔 (Y, X) */
+}
+
+/* ボタンにカーソルを乗せたときの挙動 */
+button:hover {
+  background-color: #ff7fff;
+  color: #ffffff;
+  cursor: pointer;
+}
+
 .input-area {
   background-color: #c1ffff;
+  width: 400px;
+  height: 30px;
+  padding: 4px;
+  margin: 8px;
+  border-radius: 8px;
 }
 
 .incomplete {
   background-color: #c6ffe2;
+  width: 400px;
+  height: 200px;
+  padding: 8px;
+  margin: 8px;
+  border-radius: 8px;
 }
 
 .complete {
   background-color: #ffffe0;
+  width: 400px;
+  height: 200px;
+  padding: 8px;
+  margin: 8px;
+  border-radius: 8px;
+}
+
+.title {
+  text-align: center;
+  margin-top: 0;
+  font-weight: bold;
+  color: #666;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.list-row {
+  display: flex;
+  align-items: center;
+  padding-bottom: 4px;
+}
+
+/* 「タスク01」と「完了」ボタンの間に隙間を設ける */
+.list-row span {
+  margin-right: 10px;
 }
