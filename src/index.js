@@ -1,67 +1,26 @@
-// const myProfile = {
-//   name: "ぴよ",
-//   age: 13
-//};
+import "./styles.css";
 
-// const mesg = `名前「${myProfile.name}」年齢「${myProfile.age}」`;
-// console.log(mesg);
+const onClickAdd = () => {
+  // (「追加」--02) テキストボックス(id="add-text")から、入力された値を取り出す
+  const inputText = document.getElementById("add-text").value;
+  // (「追加」--03) 「追加」ボタンを押下したら、テキストボックスの内容は消去する
+  document.getElementById("add-text").value = "";
+  // (「追加」--04) li生成
+  const li = document.createElement("li");
+  li.className = "list-row";
+  // (「追加」--05) span生成
+  const span = document.createElement("span");
+  span.innerText = inputText;
+  // console.log(span); // デバッグ
+  // alert(inputText);
+  // (「追加」--06) li > span と連結する
+  li.appendChild(span);
+  console.log(li);
+  // (「追加」--07) 「未完了のTODO」に追加する ... <ul> 直下に登録する
+  document.getElementById("incomplete-list").appendChild(li);
+};
 
-// const { name, age } = myProfile;
-// const mesg = `名前「${name}」年齢「${age}」`;
-// console.log(mesg);
-
-// const sayHello = (name = "ふが") => {
-//   console.log(`こんにちは「${name}」さん`);
-// };
-
-// console.log(sayHello());
-
-// // スプレッド構文「...」(3個のドット)
-// const arr1 = [1, 2];
-// const sumFunc = (n1, n2) => console.log(n1 + n2);
-// sumFunc(arr1[0], arr1[1]);
-// sumFunc(...arr1); // 上記と同じ. Python の *arr1 と同じである✅
-
-// const arr2 = [1, 2, 3, 4, 5];
-// const [n1, n2, ...arr3] = arr2;
-
-// console.log(n1);
-// console.log(n2);
-// console.log(arr3);
-
-// 🟢03　スプレッド構文「...」(3個のドット)
-// const arr4 = [10, 20];
-// const arr5 = [30, 40];
-// const arr6 = [...arr4]; // arr6 は [10, 20] である。ただし shallow copy であるが、プリミティブ型なので deep copy となる。
-// const arr7 = [...arr4, ...arr5]; // arr7 は [10, 20, 30, 40] である。ただし shallow copy である。プリミティブ型なので deep copy となる。
-// console.log(`arr6 => ${arr6}`);
-// console.log(`arr7 => ${arr7}`);
-
-// 🟣01　map
-// 従来の記法
-// const nameArr = ["田中", "山田", "鈴木"];
-// for (let index = 0; index < nameArr.length; index++) {
-//   console.log(nameArr[index]);
-//}
-
-// ES6 の記法
-//const nameArr = ["田中", "山田", "鈴木"];
-// (1) まずは空っぽのアロー関数を書く
-// const nameArr2 = nameArr.map( ( ) => { } )
-//
-// (2)  配列 nameArr2 の要素を name として1個ずつ受け取る
-// const nameArr2 = nameArr.map( ( name) => { } )
-//
-// (3) 要素を1回ずつ返却する
-// const nameArr2 = nameArr.map((name) => {
-//   return name;
-// });
-// console.log(nameArr2); //  ["田中", "山田", "鈴木"] という結果になる
-
-//✅ python だと、次のような表現になる
-// nameArr2 = [ name for name in nameArr ]
-
-const numArr = [1, 2, 3, 4, 5];
-const newNumArr = numArr.filter((num) => {
-  console.log(num);
-});
+// (「追加」--01) 「追加」ボタンが押されたら、onClickAdd 関数を呼び出す
+document
+  .getElementById("add-button")
+  .addEventListener("click", () => onClickAdd());
