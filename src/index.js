@@ -22,6 +22,7 @@ const onClickAdd = () => {
   // (「完了」--00)
   const buttonComplete = document.createElement("button");
   // (「完了」--01) 「完了」ボタンが押されたら「完了したTODO」へ作成する
+  buttonComplete.innerText = "完了";
   buttonComplete.addEventListener("click", (event) => {
     // (「完了」--02) 「完了」ボタンに該当する「TODO名」を取り出す
     const completeTarget = event.target.parentNode;
@@ -36,13 +37,29 @@ const onClickAdd = () => {
     document.getElementById("complete-list").appendChild(liComplete);
     // (「完了」--05) 「戻す」ボタンを作成する
     const buttonBack = document.createElement("button");
-    buttonBack.addEventListener("click", () => {
-      alert("戻す");
-    });
     buttonBack.innerText = "戻す";
+    buttonBack.addEventListener("click", (event) => {
+      const deleteTarget2 = event.target.parentNode;
+      document.getElementById("complete-list").removeChild(deleteTarget2);
+      deleteTarget2.removeChild(event.target);
+      deleteTarget2.appendChild(buttonComplete);
+      // 「削除」ボタンの再作成
+      const buttonDelete2 = document.createElement("button");
+      buttonDelete2.innerText = "削除";
+      buttonDelete2.addEventListener("click", (event) => {
+        const deleteTarget = event.target.parentNode;
+        document.getElementById("incomplete-list").removeChild(deleteTarget);
+      });
+      document.getElementById("incomplete-list").appendChild(deleteTarget2);
+      // 「削除」ボタンを要素に追加
+      deleteTarget2.appendChild(buttonDelete2);
+      document.getElementById("incomplete-list").appendChild(deleteTarget2);
+    });
     liComplete.appendChild(buttonBack);
+    // (「完了」--07) 「<ul id="incomplete-list">」の中から該当する要素を削除する 🟣
+    document.getElementById("incomplete-list").removeChild(completeTarget);
   });
-  buttonComplete.innerText = "完了";
+
   // (「削除」--00)
   const buttonDelete = document.createElement("button");
   buttonDelete.innerText = "削除";
@@ -55,7 +72,7 @@ const onClickAdd = () => {
     // クリックされた「削除」ボタンの親要素を取得するためには、this を使用すべきです：
     const deleteTarget = event.target.parentNode;
     // (「削除」--03) 「<ul id="incomplete-list">」の中から該当する要素を削除する
-    document.getElementById("incomplete-list").removeChild(li);
+    document.getElementById("incomplete-list").removeChild(deleteTarget);
   });
   // (「追加」--09) 「完了」「削除」ボタンを <ul> 直下に (<li>として) 登録する
   li.appendChild(buttonComplete);
